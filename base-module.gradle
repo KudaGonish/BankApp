@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        versionCode ProjectConfig.versionCode
+        versionName ProjectConfig.versionName
+
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            crunchPngs false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+}
+
+dependencies {
+
+    kapt DaggerHilt.hiltCompiler
+    implementation DaggerHilt.hiltAndroid
+
+    implementation Coroutines.coroutines
+
+    testImplementation Testing.junit4
+    testImplementation Testing.junitAndroidExt
+
+    testImplementation Testing.mockk
+
+    androidTestImplementation Testing.junit4
+    androidTestImplementation Testing.junitAndroidExt
+
+    testImplementation Testing.composeUiTest
+    androidTestImplementation Testing.composeUiTest
+    androidTestImplementation Testing.hiltTesting
+    kaptAndroidTest DaggerHilt.hiltCompiler
+    kaptTest DaggerHilt.hiltCompiler
+    kaptAndroidTest DaggerHilt.hiltCompiler
+}
