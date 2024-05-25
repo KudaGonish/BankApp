@@ -62,7 +62,7 @@ fun TextFieldComment(
         singleLine = singleLine,
         maxLines = if (singleLine) 1 else maxLines,
         textStyle = TextStyle(
-            color = MaterialTheme.colorsBank.textFiled.text,
+            color = if (!isError) MaterialTheme.colorsBank.textFiled.text else MaterialTheme.colorsBank.text.error,
             fontFamily = textStyle.fontFamily,
             fontSize = textStyle.fontSize,
             textAlign = textStyle.textAlign
@@ -115,7 +115,6 @@ fun TextFieldComment(
     )
 
 }
-
 
 
 @Composable

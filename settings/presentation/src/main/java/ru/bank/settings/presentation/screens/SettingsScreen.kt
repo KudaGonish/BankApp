@@ -308,7 +308,7 @@ internal fun SettingsScreen(
 private fun String.beautify() =
     buildString {
         this@beautify.mapIndexed { index, char ->
-            if (index % 4 == 0 && index != 0)
+            if ((index+1) % 4 == 0)
                 this.append("$char ")
             else
                 this.append(char)

@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
@@ -20,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -68,7 +70,6 @@ internal fun RegistrationForBankClientsScreen(
 
     val buttonState by viewModel.buttonState.collectAsStateWithLifecycle()
 
-
     val incorrectData = stringResource(id = R.string.incorrect_data)
 
     ScaffoldDefault { scaffoldState ->
@@ -79,7 +80,7 @@ internal fun RegistrationForBankClientsScreen(
             }
         }
 
-        ColumnDefaultScreen {
+        ColumnDefaultScreen(topPadding = 5.dp) {
 
             ButtonBack(onClick = onBack)
 

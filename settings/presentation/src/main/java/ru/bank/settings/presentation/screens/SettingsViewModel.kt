@@ -52,7 +52,7 @@ internal class SettingsViewModel @Inject constructor(
                 .collect {
                     when (it) {
                         is RepoResponse.Succeeded -> {
-                            _userInformation.value = it.result
+                             it.result?.let { _userInformation.value = it }
                         }
 
                         is RepoResponse.Failed -> {

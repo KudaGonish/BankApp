@@ -58,7 +58,8 @@ internal class RegistrationForBankClientsViewModel @Inject constructor(
 
 
     fun setMemberNumTextFieldValue(newValue: String) {
-        if (newValue.count() <= 16) {
+        //16 символов и 3 пробела
+        if (newValue.count() <= 16 ) {
 
             _memberNumTextFieldValue.value = newValue.filter { it.isDigit() }
 
@@ -175,11 +176,10 @@ internal class RegistrationForBankClientsViewModel @Inject constructor(
         }
     }
 
-    private fun validateMemberNumTextFieldValue() = memberNumTextFieldValue.value.count() == 16
+    private fun validateMemberNumTextFieldValue() = memberNumTextFieldValue.value.count { it != ' ' } == 16
     private fun validateCodeFieldValue() = codeFieldValue.value.isNotBlank()
     private fun validateNameFieldValue() = nameFieldValue.value.isNotBlank()
     private fun validateLastNameFieldValue() = lastNameFieldValue.value.isNotBlank()
-
 
     private fun Char.validateLetter() = this.isLetter() || this == '-' || this == ' '
 }

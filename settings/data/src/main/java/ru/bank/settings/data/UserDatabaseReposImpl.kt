@@ -40,13 +40,12 @@ internal class UserDatabaseReposImpl @Inject constructor(private val userDao: Us
     }
 
 
-    override suspend fun getLastUserInfo(): Flow<RepoResponse<UserModel>> {
+    override suspend fun getLastUserInfo(): Flow<RepoResponse<UserModel?>> {
         return flow {
 
             try {
 
                 val fetchedUser = userDao.getLast()?.toModel()
-                    ?: throw IllegalStateException("Не удалось получить пользователя")
 
                 emit(RepoResponse.Succeeded(fetchedUser))
 

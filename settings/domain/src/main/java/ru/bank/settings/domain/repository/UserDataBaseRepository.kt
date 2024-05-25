@@ -7,7 +7,7 @@ import ru.bank.shareMisc.RepoResponse
 interface UserDataBaseRepository {
 
     suspend fun getUserInfoById(entityId: Int): Flow<RepoResponse<UserModel>>
-    suspend fun getLastUserInfo(): Flow<RepoResponse<UserModel>>
+    suspend fun getLastUserInfo(): Flow<RepoResponse<UserModel?>>
 
 }
 
