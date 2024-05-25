@@ -21,13 +21,16 @@ fun MainNavigation(
 
     NavHost(navController, startDestination = viewModel.settingsNavApi.route) {
 
+        registerGraph(
+            navigationApi = viewModel.settingsNavApi, navController = navController
+        )
 
         registerGraph(
             navigationApi = viewModel.registerForBankClientsNavApi, navController = navController
         )
 
         registerGraph(
-            navigationApi = viewModel.settingsNavApi, navController = navController
+            navigationApi = viewModel.mappedListViewNavApi, navController = navController
         )
 
 

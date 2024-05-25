@@ -9,10 +9,7 @@ dependencies {
     "implementation"(Compose.extensionLifecycleFunc)
 
 
-    "implementation"(project(":settings:domain"))
-
-    "implementation"(project(mapOf("path" to ":settings:navigationApi")))
-    "implementation"(project(mapOf("path" to ":registrationForBankClients:navigationApi")))
+    "implementation"(project(":mappedListView:domain"))
     "implementation"(project(mapOf("path" to ":mappedListView:navigationApi")))
 
     "implementation"(project(mapOf("path" to ":navigationApi")))

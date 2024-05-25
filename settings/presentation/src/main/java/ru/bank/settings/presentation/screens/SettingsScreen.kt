@@ -45,6 +45,7 @@ import ru.bank.settings.presentation.R
 internal fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel(),
     onNavigateToRegistrationForBankMember: () -> Unit,
+    onNavigateToMappedListViewNavApi: () -> Unit,
     onReceiveUserId: () -> Int?,
 ) {
 
@@ -133,9 +134,8 @@ internal fun SettingsScreen(
             CardWithContent(
                 cardClickState = CardClickState.Clickable(
                     isShowArrow = true,
-                    onClick = {
-                        viewModel.sendSnackbar("Ваши покупки.")
-                    }
+                    onClick = onNavigateToMappedListViewNavApi
+
                 )
             ) {
                 ImageConfigured(
@@ -219,7 +219,10 @@ internal fun SettingsScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    CardText(modifier = Modifier.weight(1f), text = stringResource(id = R.string.biometrics_login))
+                    CardText(
+                        modifier = Modifier.weight(1f),
+                        text = stringResource(id = R.string.biometrics_login)
+                    )
 
                     Switch(
                         checked = switchState,
@@ -327,6 +330,9 @@ fun CardText(modifier: Modifier = Modifier, text: String) =
 @Composable
 private fun PreviewScreen() {
     PreviewContainerWithPaddingAndBorder {
-        SettingsScreen(onNavigateToRegistrationForBankMember = {}, onReceiveUserId = { -1 })
+        SettingsScreen(
+            onNavigateToRegistrationForBankMember = {},
+            onNavigateToMappedListViewNavApi = {},
+            onReceiveUserId = { -1 })
     }
 }

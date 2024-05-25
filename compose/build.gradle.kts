@@ -85,6 +85,10 @@ dependencies {
     implementation(project(":settings:presentation"))
     implementation(project(":settings:navigationApi"))
 
+    implementation(project(":mappedListView:data"))
+    implementation(project(":mappedListView:presentation"))
+    implementation(project(":mappedListView:navigationApi"))
+
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)

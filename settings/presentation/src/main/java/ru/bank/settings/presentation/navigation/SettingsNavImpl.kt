@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import ru.bank.mappedListView.navigationApi.MappedListViewNavigationApi
 import ru.bank.navigationapi.getArgumentAsIntFromCurrentBackStack
 import ru.bank.registrationForBankClients.navigationApi.RegistrationForBankClientsNavigationApi
 import ru.bank.settings.navigationApi.SettingsNavigationApi
@@ -17,7 +18,8 @@ private const val SETTINGS_NAV_GRAPH = "SETTINGS_NAV_GRAPH"
 private const val BASE_ROUTE = "settings"
 
 internal class SettingsNavImpl @Inject constructor(
-    private val registrationForBankClientsNavigationApi: RegistrationForBankClientsNavigationApi
+    private val registrationForBankClientsNavigationApi: RegistrationForBankClientsNavigationApi,
+    private val mappedListViewNavigationApi: MappedListViewNavigationApi
 ) : SettingsNavigationApi {
 
     override val route: String = BASE_ROUTE
@@ -31,6 +33,12 @@ internal class SettingsNavImpl @Inject constructor(
                     navController
                         .navigate(
                             registrationForBankClientsNavigationApi.route
+                        )
+                },
+                onNavigateToMappedListViewNavApi = {
+                    navController
+                        .navigate(
+                            mappedListViewNavigationApi.route
                         )
                 },
                 onReceiveUserId = {
