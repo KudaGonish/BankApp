@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
@@ -92,9 +93,9 @@ fun CardBasicContainer(
 @Composable
 fun CardWithContent(
     modifier: Modifier = Modifier,
-    shape: Shape = RoundedCornerShape(4.dp),
+    shape: Shape = RoundedCornerShape(16.dp),
     elevation: Dp = 6.dp,
-    cardMinHeight: Dp = 44.dp,
+    cardMinHeight: Dp = 60.dp,
     background: Color = MaterialTheme.colorsBank.card.background,
     cardClickState: CardClickState = CardClickState.Clickable(isShowArrow = true) { },
     allContentPadding: PaddingValues = PaddingValues(horizontal = 15.dp),
@@ -104,7 +105,7 @@ fun CardWithContent(
 
     CardBasicContainer(
         modifier = if (cardClickState is CardClickState.Clickable) {
-            modifier.clickable(onClick = cardClickState.onClick)
+            modifier.clip(shape).clickable(onClick = cardClickState.onClick)
         } else {
             modifier
         },

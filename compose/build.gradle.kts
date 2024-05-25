@@ -81,6 +81,10 @@ dependencies {
     implementation(project(":registrationForBankClients:presentation"))
     implementation(project(":registrationForBankClients:navigationApi"))
 
+    implementation(project(":settings:data"))
+    implementation(project(":settings:presentation"))
+    implementation(project(":settings:navigationApi"))
+
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)

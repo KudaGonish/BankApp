@@ -19,9 +19,15 @@ include ':core-ui'
 include ':navigationApi'
 
 include ':database'
-include ':navigationApi'
+
 include ':registrationForBankClients'
 include ':registrationForBankClients:data'
 include ':registrationForBankClients:domain'
 include ':registrationForBankClients:presentation'
 include ':registrationForBankClients:navigationApi'
+
+include ':settings'
+include ':settings:data'
+include ':settings:domain'
+include ':settings:presentation'
+include ':settings:navigationApi'

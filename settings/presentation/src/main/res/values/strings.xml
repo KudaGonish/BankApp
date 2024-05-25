@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="my_purchases">МОИ ПОКУПКИ</string>
+    <string name="settings">НАСТРОЙКИ</string>
+    <string name="e_mail">E-mail</string>
+    <string name="need_confirm">Необходимо подтвердить</string>
+    <string name="biometrics_login">Вход по биометрии</string>
+    <string name="name">Сменить 4-х значный код</string>
+    <string name="register">Регистрация для клиентов банка</string>
+    <string name="language">Язык</string>
+
+
+
+</resources>

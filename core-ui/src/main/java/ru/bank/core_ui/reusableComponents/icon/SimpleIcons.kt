@@ -9,6 +9,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.bank.core_ui.R
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import ru.bank.core_ui.theme.colorsBank
 import ru.bank.core_ui.utils.PreviewContainerWithPaddingAndBorder
 
@@ -32,6 +33,18 @@ fun IconConfigured(
     )
 }
 
+@Composable
+fun ImageConfigured(
+    @DrawableRes resId: Int,
+    modifier: Modifier = Modifier,
+) {
+    Image(
+        painter = painterResource(id = resId),
+        contentDescription = null,
+        modifier = modifier
+    )
+}
+
 /**
  * Иконка в виде стрелочки вправо.
  *
@@ -50,9 +63,6 @@ fun IconRightArrow(
         iconTint = iconTint
     )
 }
-
-
-
 
 
 @Preview

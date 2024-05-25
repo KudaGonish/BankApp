@@ -13,7 +13,7 @@ inline fun <reified T> NavHostController.getJsonArgumentFromPreviousBackStack(
         try { get<String>(navArgumentKey)?.convertFromJson() }
 
         catch (ex: Exception) {
-           // if (BuildConfig.DEBUG) debugErrorLog(ex.toString())
+            if (BuildConfig.DEBUG) debugErrorLog(ex.toString())
             null
         }
 
@@ -32,7 +32,7 @@ fun NavHostController.getArgumentAsIntFromPreviousBackStack(
             get<Int>(navArgumentKey)
         }
         catch (ex: Exception) {
-          //  if (BuildConfig.DEBUG) debugErrorLog(ex.toString())
+            if (BuildConfig.DEBUG) debugErrorLog(ex.toString())
             null
         }
 
@@ -50,7 +50,7 @@ fun NavHostController.getArgumentAsIntFromCurrentBackStack(
             get<Int>(navArgumentKey)
         }
         catch (ex: Exception) {
-            //if (BuildConfig.DEBUG) debugErrorLog(ex.toString())
+            if (BuildConfig.DEBUG) debugErrorLog(ex.toString())
             null
         }
 

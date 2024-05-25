@@ -10,9 +10,12 @@ import ru.bank.database.local.entity.UserEntity
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(user: UserEntity) : Long
+    suspend fun insert(user: UserEntity): Long
 
     @Query("SELECT * FROM UserEntity WHERE id = :entityId")
-    suspend fun get(entityId: Int): UserEntity
+    suspend fun get(entityId: Int): UserEntity?
+
+    @Query("SELECT * FROM UserEntity ORDER BY id DESC LIMIT 1")
+    suspend fun getLast(): UserEntity?
 
 }
