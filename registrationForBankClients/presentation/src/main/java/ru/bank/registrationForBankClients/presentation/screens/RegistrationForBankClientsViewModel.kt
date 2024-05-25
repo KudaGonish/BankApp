@@ -176,7 +176,7 @@ internal class RegistrationForBankClientsViewModel @Inject constructor(
         }
     }
 
-    private fun validateMemberNumTextFieldValue() = memberNumTextFieldValue.value.count { it != ' ' } == 16
+    private fun validateMemberNumTextFieldValue() = memberNumTextFieldValue.value.count() == 16
     private fun validateCodeFieldValue() = codeFieldValue.value.isNotBlank()
     private fun validateNameFieldValue() = nameFieldValue.value.isNotBlank()
     private fun validateLastNameFieldValue() = lastNameFieldValue.value.isNotBlank()
