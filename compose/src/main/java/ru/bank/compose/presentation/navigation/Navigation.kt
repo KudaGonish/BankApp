@@ -19,6 +19,15 @@ fun MainNavigation(
 
     val navController = rememberNavController()
 
+    NavHost(navController, startDestination = viewModel.registerForBankClientsNavApi.route) {
+
+        //Граф главного экрана
+        registerGraph(
+            navigationApi = viewModel.registerForBankClientsNavApi, navController = navController
+        )
+
+
+    }
 
 
 }

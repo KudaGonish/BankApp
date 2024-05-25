@@ -1,0 +1,1793 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "a8b07de48bf1136ecf7f484657370098",
+    "entities": [
+      {
+        "tableName": "UserEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `sessionLogin` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sessionLogin",
+            "columnName": "sessionLogin",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ExceptionEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `user_id` INTEGER NOT NULL, `error_time` TEXT NOT NULL, `brief_error` TEXT NOT NULL, `full_error_text` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "errorTime",
+            "columnName": "error_time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "briefError",
+            "columnName": "brief_error",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fullErrorText",
+            "columnName": "full_error_text",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "case_for_unfinished_user_flow",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT NOT NULL, `department_id` INTEGER NOT NULL, `mine_id` INTEGER NOT NULL, `shift_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL DEFAULT 0, `saved_order_id` INTEGER, `saved_asset_id` INTEGER, `saved_fill_rep_assets_id` INTEGER, `saved_downtime_id` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "departmentId",
+            "columnName": "department_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mineId",
+            "columnName": "mine_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shiftId",
+            "columnName": "shift_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "savedOrderId",
+            "columnName": "saved_order_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "savedAssetId",
+            "columnName": "saved_asset_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "savedFillReportAssetsId",
+            "columnName": "saved_fill_rep_assets_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "savedDowntimeId",
+            "columnName": "saved_downtime_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "unfinished_create_order_flow",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `orders_json` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "unfinishedOrderId",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unfinishedOrdersJson",
+            "columnName": "orders_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "unfinished_accounting_asset_flow",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `place_id` INTEGER, `assets_json` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "unfinishedAccountingAssetsId",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "placeId",
+            "columnName": "place_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unfinishedAssetsJson",
+            "columnName": "assets_json",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "unfinished_fill_rep_assets_flow",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `assets_json` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "unfinishedAccountingAssetsId",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unfinishedAssetsJson",
+            "columnName": "assets_json",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "unfinished_flow_downtimes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`downtime_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `case_id` INTEGER, `downtime_json` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "unfinishedFlowDowntimeId",
+            "columnName": "downtime_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unfinishedFlowCaseId",
+            "columnName": "case_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unfinishedFlowWithDowntimeJson",
+            "columnName": "downtime_json",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "downtime_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "unfinished_flow_assets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`asset_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `case_id` INTEGER, `asset_json` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "unfinishedFlowAssetId",
+            "columnName": "asset_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unfinishedFlowCaseId",
+            "columnName": "case_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unfinishedFlowWithAssetJson",
+            "columnName": "asset_json",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "asset_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "HandbookTimeStampEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`handbook_type` TEXT NOT NULL, `time_stamp` TEXT NOT NULL, PRIMARY KEY(`handbook_type`))",
+        "fields": [
+          {
+            "fieldPath": "handbookType",
+            "columnName": "handbook_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeStamp",
+            "columnName": "time_stamp",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "handbook_type"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "plast_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `object_id` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "objectId",
+            "columnName": "object_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "mine_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `object_id` INTEGER NOT NULL, `company_id` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "object_id",
+            "columnName": "object_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "company_id",
+            "columnName": "company_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "instructions_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "kind_place_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "operation_item_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "operation_type_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`operation_item_entity_id` INTEGER NOT NULL, `operation_type_entity_id` INTEGER NOT NULL, `operation_type_title` TEXT NOT NULL, PRIMARY KEY(`operation_type_entity_id`), FOREIGN KEY(`operation_item_entity_id`) REFERENCES `operation_item_entity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "operationEntityId",
+            "columnName": "operation_item_entity_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationTypeId",
+            "columnName": "operation_type_entity_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationTypeTitle",
+            "columnName": "operation_type_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "operation_type_entity_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "operation_item_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "operation_item_entity_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "operation_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`operation_type_id` INTEGER NOT NULL, `operation_id` INTEGER NOT NULL, `operation_title` TEXT NOT NULL, `operation_unit_id` INTEGER NOT NULL, `operation_unit_title` TEXT NOT NULL, `operation_unit_short_title` TEXT NOT NULL, `operation_groups` TEXT, PRIMARY KEY(`operation_id`), FOREIGN KEY(`operation_type_id`) REFERENCES `operation_type_entity`(`operation_type_entity_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "operationTypeId",
+            "columnName": "operation_type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationId",
+            "columnName": "operation_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationTitle",
+            "columnName": "operation_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationUnitId",
+            "columnName": "operation_unit_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationUnitTitle",
+            "columnName": "operation_unit_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationUnitShortTitle",
+            "columnName": "operation_unit_short_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "operationGroups",
+            "columnName": "operation_groups",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "operation_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "operation_type_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "operation_type_id"
+            ],
+            "referencedColumns": [
+              "operation_type_entity_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "equipment_object_type_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`object_type_id` INTEGER NOT NULL, `object_type_title` TEXT NOT NULL, PRIMARY KEY(`object_type_id`))",
+        "fields": [
+          {
+            "fieldPath": "objectTypeId",
+            "columnName": "object_type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "objectTypeTitle",
+            "columnName": "object_type_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "object_type_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "equipment_object_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`type_id` INTEGER NOT NULL, `object_id` INTEGER NOT NULL, `object_title` TEXT NOT NULL, PRIMARY KEY(`object_id`), FOREIGN KEY(`type_id`) REFERENCES `equipment_object_type_entity`(`object_type_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "objectTypeId",
+            "columnName": "type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "objectTd",
+            "columnName": "object_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "objectTitle",
+            "columnName": "object_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "object_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "equipment_object_type_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "type_id"
+            ],
+            "referencedColumns": [
+              "object_type_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "equipment_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`equipment_object_id` INTEGER NOT NULL, `equipment_id` INTEGER NOT NULL, `equipment_title` TEXT NOT NULL, `parent_equipment_id` INTEGER, `inventory_number` TEXT, PRIMARY KEY(`equipment_id`), FOREIGN KEY(`equipment_object_id`) REFERENCES `equipment_object_entity`(`object_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "equipmentObjectId",
+            "columnName": "equipment_object_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equipmentId",
+            "columnName": "equipment_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equipmentTitle",
+            "columnName": "equipment_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentEquipmentId",
+            "columnName": "parent_equipment_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "inventoryNumber",
+            "columnName": "inventory_number",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "equipment_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "equipment_object_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "equipment_object_id"
+            ],
+            "referencedColumns": [
+              "object_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "place_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`place_id` INTEGER NOT NULL, `mine_place_id` INTEGER NOT NULL, `object_place_id` INTEGER NOT NULL DEFAULT 0, `parent_object_id` INTEGER NOT NULL DEFAULT 0, `place_title` TEXT NOT NULL, PRIMARY KEY(`place_id`), FOREIGN KEY(`object_place_id`) REFERENCES `typical_object_with_mine_entity`(`typical_object_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`mine_place_id`) REFERENCES `mine_for_place_entity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "placeId",
+            "columnName": "place_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mineId",
+            "columnName": "mine_place_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "objId",
+            "columnName": "object_place_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "kindObjectId",
+            "columnName": "parent_object_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "placeTitle",
+            "columnName": "place_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "place_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_place_entity_place_id",
+            "unique": true,
+            "columnNames": [
+              "place_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_place_entity_place_id` ON `${TABLE_NAME}` (`place_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "typical_object_with_mine_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "object_place_id"
+            ],
+            "referencedColumns": [
+              "typical_object_id"
+            ]
+          },
+          {
+            "table": "mine_for_place_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "mine_place_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "mine_for_place_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mine_id` INTEGER NOT NULL, `typical_object_mine_id` INTEGER NOT NULL, `mine_title` TEXT NOT NULL, FOREIGN KEY(`typical_object_mine_id`) REFERENCES `typical_object_with_mine_entity`(`typical_object_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mineId",
+            "columnName": "mine_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typicalObjectId",
+            "columnName": "typical_object_mine_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mineTitle",
+            "columnName": "mine_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "typical_object_with_mine_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "typical_object_mine_id"
+            ],
+            "referencedColumns": [
+              "typical_object_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "typical_object_with_mine_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`typical_object_id` INTEGER NOT NULL, `place_object_type_id` INTEGER NOT NULL, `typical_object_title` TEXT NOT NULL, PRIMARY KEY(`typical_object_id`), FOREIGN KEY(`place_object_type_id`) REFERENCES `place_object_type_with_typical_object_entity`(`object_type_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "typicalObjectId",
+            "columnName": "typical_object_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "placeObjectTypeId",
+            "columnName": "place_object_type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typicalObjectTitle",
+            "columnName": "typical_object_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "typical_object_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "place_object_type_with_typical_object_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "place_object_type_id"
+            ],
+            "referencedColumns": [
+              "object_type_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "place_object_type_with_typical_object_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`object_type_id` INTEGER NOT NULL, `kind_object_obj_type_id` INTEGER NOT NULL, `object_type_title` TEXT NOT NULL, PRIMARY KEY(`object_type_id`), FOREIGN KEY(`kind_object_obj_type_id`) REFERENCES `place_kind_object_with_object_type_entity`(`kind_object_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "objectTypeId",
+            "columnName": "object_type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kindObjectId",
+            "columnName": "kind_object_obj_type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "objectTypeTitle",
+            "columnName": "object_type_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "object_type_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "place_kind_object_with_object_type_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kind_object_obj_type_id"
+            ],
+            "referencedColumns": [
+              "kind_object_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "place_kind_object_with_object_type_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`kind_object_id` INTEGER NOT NULL, `kind_object_title` TEXT NOT NULL, PRIMARY KEY(`kind_object_id`))",
+        "fields": [
+          {
+            "fieldPath": "kindObjectId",
+            "columnName": "kind_object_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kindObjectTitle",
+            "columnName": "kind_object_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "kind_object_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "department_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `upper_company_id` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "upperCompanyId",
+            "columnName": "upper_company_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_department_entity_id",
+            "unique": true,
+            "columnNames": [
+              "id"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_department_entity_id` ON `${TABLE_NAME}` (`id`)"
+          },
+          {
+            "name": "index_department_entity_upper_company_id",
+            "unique": false,
+            "columnNames": [
+              "upper_company_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_department_entity_upper_company_id` ON `${TABLE_NAME}` (`upper_company_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "worker_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`worker_id` INTEGER NOT NULL, `company_id` INTEGER NOT NULL, `worker_position_title` TEXT, `gender` TEXT, `worker_position_id` INTEGER, `worker_position_qualification` TEXT, `worker_full_name` TEXT NOT NULL, `worker_tabel_number` TEXT, `birthday` TEXT, `worker_role_id` INTEGER, `worker_worked` INTEGER, PRIMARY KEY(`worker_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "worker_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "companyId",
+            "columnName": "company_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "positionTitle",
+            "columnName": "worker_position_title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "positionId",
+            "columnName": "worker_position_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "positionQualification",
+            "columnName": "worker_position_qualification",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fullName",
+            "columnName": "worker_full_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tabelNumber",
+            "columnName": "worker_tabel_number",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "birthday",
+            "columnName": "birthday",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "roleId",
+            "columnName": "worker_role_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "worked",
+            "columnName": "worker_worked",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "worker_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_worker_entity_worker_id",
+            "unique": true,
+            "columnNames": [
+              "worker_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_worker_entity_worker_id` ON `${TABLE_NAME}` (`worker_id`)"
+          },
+          {
+            "name": "index_worker_entity_company_id",
+            "unique": false,
+            "columnNames": [
+              "company_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_worker_entity_company_id` ON `${TABLE_NAME}` (`company_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "asset_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`asset_id` INTEGER NOT NULL, `asset_title` TEXT NOT NULL, `unit_id` INTEGER NOT NULL, `unit_title_short` TEXT NOT NULL, PRIMARY KEY(`asset_id`))",
+        "fields": [
+          {
+            "fieldPath": "assetId",
+            "columnName": "asset_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "assetTitle",
+            "columnName": "asset_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitId",
+            "columnName": "unit_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitTitleShort",
+            "columnName": "unit_title_short",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "asset_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "measurement_unit_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`unit_id` INTEGER NOT NULL, `unit_title` TEXT NOT NULL, `shortened_title` TEXT NOT NULL, `sap_id` INTEGER NOT NULL, PRIMARY KEY(`unit_id`))",
+        "fields": [
+          {
+            "fieldPath": "unitId",
+            "columnName": "unit_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitTitle",
+            "columnName": "unit_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shortenedTitle",
+            "columnName": "shortened_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sapId",
+            "columnName": "sap_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "unit_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "kind_downtime_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`kind_downtime_id` INTEGER NOT NULL, `kind_downtime_title` TEXT NOT NULL, PRIMARY KEY(`kind_downtime_id`))",
+        "fields": [
+          {
+            "fieldPath": "kindDowntimeId",
+            "columnName": "kind_downtime_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kindDowntimeTitle",
+            "columnName": "kind_downtime_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "kind_downtime_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "reason_downtime_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`reason_downtime_id` INTEGER NOT NULL, `reason_downtime_title` TEXT NOT NULL, `reason_downtime_object_id` INTEGER NOT NULL, PRIMARY KEY(`reason_downtime_id`))",
+        "fields": [
+          {
+            "fieldPath": "reasonDowntimeId",
+            "columnName": "reason_downtime_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reasonDowntimeTitle",
+            "columnName": "reason_downtime_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reasonDowntimeObjectId",
+            "columnName": "reason_downtime_object_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "reason_downtime_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "regulation_document_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `parent_document_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `date_start` TEXT NOT NULL, `date_end` TEXT NOT NULL, `status_id` INTEGER NOT NULL, `vid_document_id` INTEGER NOT NULL, `jsondoc` TEXT NOT NULL, `note` TEXT NOT NULL, `ref_norm_doc_id` TEXT NOT NULL, `date_time_sync` TEXT NOT NULL, `number_document` TEXT NOT NULL, `worker_id` INTEGER NOT NULL, `date_deposit` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent_document_id",
+            "columnName": "parent_document_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date_start",
+            "columnName": "date_start",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date_end",
+            "columnName": "date_end",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status_id",
+            "columnName": "status_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vid_document_id",
+            "columnName": "vid_document_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jsondoc",
+            "columnName": "jsondoc",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ref_norm_doc_id",
+            "columnName": "ref_norm_doc_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date_time_sync",
+            "columnName": "date_time_sync",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "number_document",
+            "columnName": "number_document",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "worker_id",
+            "columnName": "worker_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date_deposit",
+            "columnName": "date_deposit",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "danger_motion_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`motion_id` INTEGER NOT NULL, `motion_title` TEXT NOT NULL, PRIMARY KEY(`motion_id`))",
+        "fields": [
+          {
+            "fieldPath": "motion_id",
+            "columnName": "motion_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "motion_title",
+            "columnName": "motion_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "motion_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "nested_danger_motion_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`parent_id` INTEGER NOT NULL, `motion_id` INTEGER NOT NULL, `motion_title` TEXT NOT NULL, PRIMARY KEY(`motion_id`), FOREIGN KEY(`parent_id`) REFERENCES `danger_motion_entity`(`motion_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "parent_id",
+            "columnName": "parent_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "motion_id",
+            "columnName": "motion_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "motion_title",
+            "columnName": "motion_title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "motion_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "danger_motion_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parent_id"
+            ],
+            "referencedColumns": [
+              "motion_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "violation_type_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `date_time_sync` TEXT NOT NULL, `ref_error_direction_id` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date_time_sync",
+            "columnName": "date_time_sync",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ref_error_direction_id",
+            "columnName": "ref_error_direction_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "nested_violation_type_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`violation_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `kind_violation_id` INTEGER NOT NULL, `date_time_sync` TEXT NOT NULL, `ref_error_direction_id` INTEGER NOT NULL, PRIMARY KEY(`violation_id`), FOREIGN KEY(`kind_violation_id`) REFERENCES `violation_type_entity`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "violation_id",
+            "columnName": "violation_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind_violation_id",
+            "columnName": "kind_violation_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date_time_sync",
+            "columnName": "date_time_sync",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ref_error_direction_id",
+            "columnName": "ref_error_direction_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "violation_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "violation_type_entity",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kind_violation_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "favorite_assets_by_department",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`department_id` INTEGER NOT NULL, `favorite_assets_json` TEXT NOT NULL, PRIMARY KEY(`department_id`))",
+        "fields": [
+          {
+            "fieldPath": "departmentId",
+            "columnName": "department_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteAssetsJson",
+            "columnName": "favorite_assets_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "department_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "favorite_equipment_by_department_and_mine",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`department_id` INTEGER NOT NULL, `mine_id` INTEGER NOT NULL, `favorite_equipment_json` TEXT NOT NULL, PRIMARY KEY(`department_id`, `mine_id`))",
+        "fields": [
+          {
+            "fieldPath": "departmentId",
+            "columnName": "department_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mineId",
+            "columnName": "mine_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteEquipmentJson",
+            "columnName": "favorite_equipment_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "department_id",
+            "mine_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "favorite_instructions_by_department_and_mine",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`department_id` INTEGER NOT NULL, `mine_id` INTEGER NOT NULL, `favorite_instructions_json` TEXT NOT NULL, PRIMARY KEY(`department_id`, `mine_id`))",
+        "fields": [
+          {
+            "fieldPath": "departmentId",
+            "columnName": "department_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mineId",
+            "columnName": "mine_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteInstructionsJson",
+            "columnName": "favorite_instructions_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "department_id",
+            "mine_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "favorite_kinds_downtime_by_department",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`department_id` INTEGER NOT NULL, `favorite_kinds_downtime_json` TEXT NOT NULL, PRIMARY KEY(`department_id`))",
+        "fields": [
+          {
+            "fieldPath": "departmentId",
+            "columnName": "department_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteKindsDowntimeJson",
+            "columnName": "favorite_kinds_downtime_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "department_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "favorite_reasons_downtime_by_department",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`department_id` INTEGER NOT NULL, `favorite_reasons_downtime_json` TEXT NOT NULL, PRIMARY KEY(`department_id`))",
+        "fields": [
+          {
+            "fieldPath": "departmentId",
+            "columnName": "department_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteReasonsDowntimeJson",
+            "columnName": "favorite_reasons_downtime_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "department_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "favorite_operations_by_department_and_mine",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`department_id` INTEGER NOT NULL, `mine_id` INTEGER NOT NULL, `favorite_operations_json` TEXT NOT NULL, PRIMARY KEY(`department_id`, `mine_id`))",
+        "fields": [
+          {
+            "fieldPath": "departmentId",
+            "columnName": "department_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mineId",
+            "columnName": "mine_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteOperationsJson",
+            "columnName": "favorite_operations_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "department_id",
+            "mine_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "local_ids_entity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` TEXT NOT NULL, `id` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "primaryKey",
+            "columnName": "key",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "key"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "digital_signature_data_for_user",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `user_signature_profile_json` TEXT NOT NULL, `signature_config_json` TEXT NOT NULL, PRIMARY KEY(`user_id`))",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userSignatureProfileJson",
+            "columnName": "user_signature_profile_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signatureConfigJson",
+            "columnName": "signature_config_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "user_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "worker_info_and_notification_settings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`worker_id` INTEGER NOT NULL, `worker_info_json` TEXT NOT NULL, `notification_settings_json` TEXT NOT NULL, `profile_pic_uri` TEXT NOT NULL, `is_dark_theme_enabled` INTEGER NOT NULL, PRIMARY KEY(`worker_id`))",
+        "fields": [
+          {
+            "fieldPath": "workerId",
+            "columnName": "worker_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "workerInfoJson",
+            "columnName": "worker_info_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notificationSettingsJson",
+            "columnName": "notification_settings_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profilePicURIs",
+            "columnName": "profile_pic_uri",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDarkThemeEnabled",
+            "columnName": "is_dark_theme_enabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "worker_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a8b07de48bf1136ecf7f484657370098')"
+    ]
+  }
+}

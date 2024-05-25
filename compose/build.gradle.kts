@@ -75,8 +75,14 @@ dependencies {
     implementation(project(":shareMisc"))
 
 
+    implementation(project(":database"))
+
+    implementation(project(":registrationForBankClients:data"))
+    implementation(project(":registrationForBankClients:presentation"))
+    implementation(project(":registrationForBankClients:navigationApi"))
+
+
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
-
 
 }

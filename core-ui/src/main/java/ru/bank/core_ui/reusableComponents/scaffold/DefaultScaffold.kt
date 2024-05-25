@@ -32,7 +32,7 @@ import ru.bank.core_ui.theme.colorsBank
  */
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "ModifierParameter")
 @Composable
-fun ScaffoldDefaultWithTopBar(
+fun ScaffoldDefault(
     modifier: Modifier = Modifier.fillMaxSize(),
     scaffoldBackground: Color = MaterialTheme.colorsBank.background,
     content: @Composable BoxScope.(ScaffoldState) -> Unit
@@ -56,7 +56,7 @@ fun ScaffoldDefaultWithTopBar(
 @Composable
 private fun DefaultScaffold_preview() {
     BankTheme {
-        ScaffoldDefaultWithTopBar() {
+        ScaffoldDefault() {
 
         }
     }

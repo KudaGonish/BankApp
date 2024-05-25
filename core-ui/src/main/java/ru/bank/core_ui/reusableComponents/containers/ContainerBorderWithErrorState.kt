@@ -23,7 +23,7 @@ import ru.bank.core_ui.theme.colorsBank
 @Composable
 fun ContainerBorderWithErrorTextState(
     isInErrorState: Boolean = false,
-    borderShape: Shape = RoundedCornerShape(size = 4.dp),
+    borderShape: Shape = RoundedCornerShape(size = 16.dp),
     borderWidth: Dp = 1.dp,
     text: String,
     textDefaultColor: Color = MaterialTheme.colorsBank.text.secondary,

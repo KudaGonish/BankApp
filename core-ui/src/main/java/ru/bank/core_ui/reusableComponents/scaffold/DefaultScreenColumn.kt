@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ColumnDefaultScreen(
     modifier: Modifier = Modifier,
-    scrollEnabled:Boolean = true,
+    scrollEnabled: Boolean = true,
     topPadding: Dp = 20.dp,
     content: @Composable ColumnScope.(scrollState: ScrollState) -> Unit
 ) {
@@ -31,7 +31,7 @@ fun ColumnDefaultScreen(
         modifier = modifier
             .widthIn(max = 580.dp)
             .fillMaxSize()
-            .verticalScroll(enabled = scrollEnabled,state = scrollState)
+            .verticalScroll(enabled = scrollEnabled, state = scrollState)
             .padding(start = 12.dp, end = 12.dp, top = topPadding, bottom = 20.dp)
     ) {
         content(scrollState)

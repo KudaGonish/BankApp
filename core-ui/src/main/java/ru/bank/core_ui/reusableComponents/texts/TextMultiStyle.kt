@@ -6,11 +6,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 
 @Composable
 fun TextMultiStyle(
     modifier: Modifier = Modifier,
+    textAlign: TextAlign? = null,
     text1: String?,
     text1Style: TextStyle,
     text1Color: Color,
@@ -21,6 +23,7 @@ fun TextMultiStyle(
 ) {
     if (text1 != null || text2 != null) {
         TextOneFloor(
+            textAlign= textAlign,
             modifier = modifier,
             text = buildAnnotatedString {
                 withStyle(
@@ -33,6 +36,7 @@ fun TextMultiStyle(
                         fontSynthesis = text1Style.fontSynthesis,
                         fontWeight = text1Style.fontWeight,
                         letterSpacing = text1Style.letterSpacing,
+                        textDecoration = text1Style.textDecoration
                     )
                 ) {
                     append(text1 ?: "")
@@ -45,7 +49,8 @@ fun TextMultiStyle(
                         fontSize = text2Style.fontSize,
                         fontFeatureSettings = text2Style.fontFeatureSettings,
                         fontSynthesis = text2Style.fontSynthesis,
-                        fontWeight = text2Style.fontWeight
+                        fontWeight = text2Style.fontWeight,
+                        textDecoration = text2Style.textDecoration
                     )
                 ) {
                     append(text2 ?: "")

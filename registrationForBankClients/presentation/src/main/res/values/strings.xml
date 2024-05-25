@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_for_bank_clients">Регистрация для клиентов банка</string>
+    <string name="num_of_participant">Номер участника</string>
+    <string name="num_of_participant_desc">Номер из 16 цифр, который вы получили от банка</string>
+    <string name="code">Код</string>
+    <string name="code_desc">Код, который вы получили от банка</string>
+    <string name="name">Имя</string>
+    <string name="name_desс">Имя (на латинице, как в загранпаспорте)</string>
+    <string name="last_name">Фамилия</string>
+    <string name="last_name_desс">Фамилия (на латинице, как в загранпаспорте)</string>
+    <string name="conditions_of_use_1">Нажимая кнопку продолжить, \nвы соглашаетесь</string>
+    <string name="conditions_of_use_2">с условиями участия</string>
+    <string name="incorrect_data">Некорректные данные</string>
+
+</resources>
