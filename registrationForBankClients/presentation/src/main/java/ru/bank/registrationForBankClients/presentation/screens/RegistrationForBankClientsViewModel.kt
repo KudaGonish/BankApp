@@ -24,54 +24,121 @@ internal class RegistrationForBankClientsViewModel @Inject constructor(
     private val _screenState: MutableStateFlow<ScreenState> = MutableStateFlow(ScreenState.Initial)
     val screenState = _screenState.asStateFlow()
 
+
     private val _memberNumTextFieldValue = MutableStateFlow("")
     val memberNumTextFieldValue = _memberNumTextFieldValue.asStateFlow()
+
+    private val _isInErrorMemberNumTextFieldState = MutableStateFlow(false)
+    val isInErrorMemberNumTextFieldState = _isInErrorMemberNumTextFieldState.asStateFlow()
+
 
     private val _codeFieldValue = MutableStateFlow("")
     val codeFieldValue = _codeFieldValue.asStateFlow()
 
+    private val _isInErrorCodeFieldState = MutableStateFlow(false)
+    val isInErrorCodeFieldState = _isInErrorCodeFieldState.asStateFlow()
+
+
     private val _nameFieldValue = MutableStateFlow("")
     val nameFieldValue = _nameFieldValue.asStateFlow()
+
+    private val _isInErrorNameFieldState = MutableStateFlow(false)
+    val isInErrorNameFieldState = _isInErrorNameFieldState.asStateFlow()
+
 
     private val _lastNameFieldValue = MutableStateFlow("")
     val lastNameFieldValue = _lastNameFieldValue.asStateFlow()
 
-    private val _buttonState = MutableStateFlow(false)
+    private val _isInErrorLastNameFieldState = MutableStateFlow(false)
+    val isInErrorLastNameFieldState = _isInErrorLastNameFieldState.asStateFlow()
+
+
+    private val _buttonState = MutableStateFlow(true)
     val buttonState = _buttonState.asStateFlow()
 
 
     fun setMemberNumTextFieldValue(newValue: String) {
         if (newValue.count() <= 16) {
+
             _memberNumTextFieldValue.value = newValue.filter { it.isDigit() }
 
+            checkErrorStateMemberNumTextField()
+
             checkButtonEnabled()
+
         }
+
     }
 
     fun setCodeFieldValue(newValue: String) {
+
         _codeFieldValue.value = newValue.filter { it.isDigit() }
+
+        checkErrorCodeField()
+
         checkButtonEnabled()
+
     }
 
     fun setNameFieldValue(newValue: String) {
+
         _nameFieldValue.value = newValue.filter { it.validateLetter() }
+
+        checkErrorStateNameTextField()
+
         checkButtonEnabled()
+
     }
 
     fun setLastNameFieldValue(newValue: String) {
+
         _lastNameFieldValue.value = newValue.filter { it.validateLetter() }
+
+        checkErrorStateLastNameTextField()
+
         checkButtonEnabled()
+
     }
 
-    private fun checkButtonEnabled() {
+    private fun checkButtonEnabled(): Boolean {
         _buttonState.value = validateMemberNumTextFieldValue() &&
                 validateCodeFieldValue() &&
                 validateNameFieldValue() &&
                 validateLastNameFieldValue()
 
+        return buttonState.value
+    }
+
+    private fun checkErrorStateMemberNumTextField() {
+        _isInErrorMemberNumTextFieldState.value = !validateMemberNumTextFieldValue()
+    }
+
+    private fun checkErrorCodeField() {
+        _isInErrorCodeFieldState.value = !validateCodeFieldValue()
+    }
+
+    private fun checkErrorStateNameTextField() {
+        _isInErrorNameFieldState.value = !validateNameFieldValue()
+    }
+
+    private fun checkErrorStateLastNameTextField() {
+        _isInErrorLastNameFieldState.value = !validateLastNameFieldValue()
+    }
+
+    private fun validateTextFields(): Boolean {
+        checkErrorStateMemberNumTextField()
+        checkErrorCodeField()
+        checkErrorStateNameTextField()
+        checkErrorStateLastNameTextField()
+
+
+        return checkButtonEnabled()
     }
 
     fun saveBankClientClient(onSuccess: (Int) -> Unit) {
+
+        if (!validateTextFields())
+            return
 
         viewModelScope.launch {
 
@@ -98,6 +165,7 @@ internal class RegistrationForBankClientsViewModel @Inject constructor(
                         is RepoResponse.Succeeded -> {
                             onSuccess(it.result)
                         }
+
                         is RepoResponse.Failed -> {
                             _messageForUi.emit(it.error)
                         }

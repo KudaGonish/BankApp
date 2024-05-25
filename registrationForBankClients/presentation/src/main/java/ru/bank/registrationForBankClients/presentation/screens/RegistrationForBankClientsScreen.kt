@@ -11,11 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -48,12 +48,24 @@ internal fun RegistrationForBankClientsScreen(
     onBack: () -> Unit,
     onContinue: (Int) -> Unit,
 ) {
+    val focusManager = LocalFocusManager.current
+
     val screenState = viewModel.screenState.collectAsStateWithLifecycle()
 
     val memberNumTextFieldValue = viewModel.memberNumTextFieldValue.collectAsStateWithLifecycle()
+    val isErrorMemberNumTextFieldState =
+        viewModel.isInErrorMemberNumTextFieldState.collectAsStateWithLifecycle()
+
     val codeFieldValue = viewModel.codeFieldValue.collectAsStateWithLifecycle()
+    val isErrorCodeFieldState = viewModel.isInErrorCodeFieldState.collectAsStateWithLifecycle()
+
     val nameFieldValue = viewModel.nameFieldValue.collectAsStateWithLifecycle()
+    val isErrorNameFieldState = viewModel.isInErrorNameFieldState.collectAsStateWithLifecycle()
+
     val lastNameFieldValue = viewModel.lastNameFieldValue.collectAsStateWithLifecycle()
+    val isErrorLastNameFieldState =
+        viewModel.isInErrorLastNameFieldState.collectAsStateWithLifecycle()
+
     val buttonState by viewModel.buttonState.collectAsStateWithLifecycle()
 
 
@@ -81,8 +93,9 @@ internal fun RegistrationForBankClientsScreen(
             SpacerVertical()
 
             TextFieldWithErrorState(
+                focusManager = focusManager,
                 keyboardType = KeyboardType.Number,
-                isError = remember { mutableStateOf(false) },
+                isError = isErrorMemberNumTextFieldState,
                 value = memberNumTextFieldValue,
                 errorText = incorrectData,
                 placeholder = stringResource(id = R.string.num_of_participant),
@@ -95,8 +108,9 @@ internal fun RegistrationForBankClientsScreen(
             SpacerVertical(15.dp)
 
             TextFieldWithErrorState(
+                focusManager = focusManager,
                 keyboardType = KeyboardType.Number,
-                isError = remember { mutableStateOf(false) },
+                isError = isErrorCodeFieldState,
                 value = codeFieldValue,
                 errorText = incorrectData,
                 placeholder = stringResource(id = R.string.code),
@@ -107,13 +121,15 @@ internal fun RegistrationForBankClientsScreen(
             SpacerVertical(15.dp)
 
             TextFieldWithErrorState(
+                focusManager = focusManager,
                 keyboardType = KeyboardType.Text,
-                isError = remember { mutableStateOf(false) },
+                isError = isErrorNameFieldState,
                 value = nameFieldValue,
                 errorText = incorrectData,
                 placeholder = stringResource(id = R.string.name),
                 descText = stringResource(id = R.string.name_desс),
                 onValueChange = {
+
                     viewModel.setNameFieldValue(it)
                 }
             )
@@ -121,8 +137,9 @@ internal fun RegistrationForBankClientsScreen(
             SpacerVertical(15.dp)
 
             TextFieldWithErrorState(
+                focusManager = focusManager,
                 keyboardType = KeyboardType.Text,
-                isError = remember { mutableStateOf(false) },
+                isError = isErrorLastNameFieldState,
                 value = lastNameFieldValue,
                 errorText = incorrectData,
                 placeholder = stringResource(id = R.string.last_name),
@@ -176,6 +193,7 @@ internal fun RegistrationForBankClientsScreen(
 
 @Composable
 fun TextFieldWithErrorState(
+    focusManager: FocusManager,
     keyboardType: KeyboardType,
     isError: State<Boolean>,
     value: State<String>,
@@ -194,8 +212,8 @@ fun TextFieldWithErrorState(
         componentHeight = 50.dp,
         isError = isError.value,
         errorText = errorText,
-        imeAction = ImeAction.Next,
-        onKeyboardActionNext = { },
+        imeAction = ImeAction.Done,
+        onKeyboardActionDone = { focusManager.clearFocus() },
     ) { it() }
 
     SpacerVertical(5.dp)
